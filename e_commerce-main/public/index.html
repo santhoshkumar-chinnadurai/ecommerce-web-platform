@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Northstar Goods | Online Store</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" data-route>
+        <span class="brand-mark">N</span>
+        <span>
+          <strong>Northstar Goods</strong>
+          <small>Everyday essentials</small>
+        </span>
+      </a>
+      <nav class="site-nav">
+        <a href="/" data-route>Shop</a>
+        <a href="/orders" data-route>Orders</a>
+        <a id="adminLink" class="hidden" href="/admin" data-route>Admin</a>
+      </nav>
+      <div class="header-actions">
+        <button id="cartButton" class="icon-button" type="button" aria-label="Open cart">
+          <span>Cart</span>
+          <strong id="cartCount">0</strong>
+        </button>
+        <a id="loginLink" class="button-link secondary" href="/login" data-route>Login</a>
+        <a id="registerLink" class="button-link" href="/register" data-route>Register</a>
+        <button id="accountButton" class="account-chip hidden" type="button"></button>
+      </div>
+    </header>
+
+    <main>
+      <section id="shopPage" class="page shop-page">
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">New season collection</p>
+            <h1>Shop useful things that make every day smoother.</h1>
+            <p>Curated bags, home goods, kitchen tools, tech accessories, and wellness picks with fast checkout and live stock tracking.</p>
+            <div class="hero-actions">
+              <a class="button-link" href="#catalog">Shop products</a>
+              <a class="button-link secondary" href="/register" data-route>Create account</a>
+            </div>
+          </div>
+        </section>
+
+        <section id="catalog" class="catalog-shell">
+          <aside class="filters">
+            <p class="eyebrow">Browse</p>
+            <h2>Categories</h2>
+            <div id="categoryList" class="category-list"></div>
+          </aside>
+          <section class="catalog-main">
+            <div class="section-head">
+              <div>
+                <p id="catalogEyebrow" class="eyebrow">All products</p>
+                <h2>Featured Products</h2>
+              </div>
+              <div class="search-box">
+                <input id="searchInput" type="search" placeholder="Search products">
+              </div>
+            </div>
+            <div id="productGrid" class="product-grid"></div>
+          </section>
+        </section>
+      </section>
+
+      <section id="productPage" class="page product-detail-page hidden">
+        <button id="backToShop" class="text-button" type="button">Back to shop</button>
+        <div id="productDetail" class="product-detail"></div>
+      </section>
+
+      <section id="loginPage" class="page auth-page hidden">
+        <form id="loginForm" class="auth-card">
+          <p class="eyebrow">Welcome back</p>
+          <h1>Login to your account</h1>
+          <label>Email <input name="email" type="email" placeholder="you@example.com" required></label>
+          <label>Password <input name="password" type="password" placeholder="Password" required></label>
+          <button type="submit">Login</button>
+          <p class="form-note">New here? <a href="/register" data-route>Create an account</a></p>
+        </form>
+      </section>
+
+      <section id="registerPage" class="page auth-page hidden">
+        <form id="registerForm" class="auth-card">
+          <p class="eyebrow">Join Northstar</p>
+          <h1>Create your account</h1>
+          <label>Name <input name="name" placeholder="Full name" required></label>
+          <label>Email <input name="email" type="email" placeholder="you@example.com" required></label>
+          <label>Password <input name="password" type="password" minlength="6" placeholder="At least 6 characters" required></label>
+          <button type="submit">Register</button>
+          <p class="form-note">The first registered account becomes Admin.</p>
+          <p class="form-note">Already have an account? <a href="/login" data-route>Login</a></p>
+        </form>
+      </section>
+
+      <section id="ordersPage" class="page dashboard-page hidden">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Tracking</p>
+            <h1>Orders</h1>
+          </div>
+          <button id="refreshOrdersButton" class="secondary" type="button">Refresh</button>
+        </div>
+        <div id="ordersList" class="order-list"></div>
+      </section>
+
+      <section id="adminPage" class="page dashboard-page hidden">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Admin</p>
+            <h1>Product Management</h1>
+          </div>
+        </div>
+        <form id="productForm" class="product-form">
+          <input type="hidden" name="id">
+          <input name="name" placeholder="Product name" required>
+          <input name="category" placeholder="Category" required>
+          <input name="price" type="number" min="0" step="0.01" placeholder="Price" required>
+          <input name="stock" type="number" min="0" step="1" placeholder="Stock" required>
+          <input name="imageUrl" type="url" placeholder="Image URL">
+          <textarea name="description" placeholder="Short description" required></textarea>
+          <textarea name="longDescription" placeholder="Detailed product description"></textarea>
+          <div class="form-actions">
+            <button type="submit">Save Product</button>
+            <button id="clearProductForm" class="secondary" type="button">Clear</button>
+          </div>
+        </form>
+        <div id="adminProducts" class="admin-products"></div>
+      </section>
+    </main>
+
+    <aside id="cartDrawer" class="cart-drawer hidden" aria-label="Shopping cart">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button id="closeCart" class="secondary" type="button">Close</button>
+      </div>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cartTotal">$0.00</strong>
+      </div>
+      <button id="checkoutButton" type="button">Checkout</button>
+    </aside>
+
+    <div id="toast" class="toast hidden"></div>
+    <script src="/app.js"></script>
+  </body>
+</html>
